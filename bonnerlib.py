@@ -19,12 +19,12 @@ from mpl_toolkits.mplot3d import Axes3D
 # and highlight the decision boundary in solid black.
 # If margins=1 then highlight the margins in dashed black
 
-def dfContour(clf,data,margins=0):
+def dfContour(clf,data,margins=0,colors = ['r','b'],title = ""):
     
     X,y = data
     # plot the data
-    colors = np.array(['r','b'])
     plt.scatter(X[:, 0], X[:, 1], color=colors[y],s=3)
+    plt.title(title)
     
     # form a mesh/grid to cover the data
     h = 0.02
@@ -55,7 +55,7 @@ def dfContour(clf,data,margins=0):
 # if Cflag=1, place a contour plot of the decision function beneath the 3D plot.
 # (Use data to determine the range of the axes)
 
-def df3D(clf,data,cFlag=1):    
+def df3D(clf,data,cFlag=1,colors = ['r','b'],title = ""):    
     
     # form a mesh/grid to cover the data
     h = 0.01
@@ -75,9 +75,11 @@ def df3D(clf,data,cFlag=1):
     # plot the contours of the decision function
     Z = Z.reshape(xx.shape)
     plt.figure()
+    
+
     ax = plt.axes(projection='3d')
     ax.plot_surface(xx, yy, Z, cmap=cm.RdBu, linewidth=0.2,edgecolor='k')
-    
+    plt.title(title)
     if cFlag == 1:
         # display a contour plot of the decision function
         Zmin = np.min(Z) - 1.0
